@@ -1,0 +1,15 @@
+---
+- name: update repositories cache
+  apt:
+    update_cache: yes
+  tags: pkg-install
+  become: true
+
+- name: install common software
+  apt:
+    name={{ item }}
+    state=present
+  with_items:
+    - git
+  tags: pkg-install
+  become: true

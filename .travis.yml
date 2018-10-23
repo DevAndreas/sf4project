@@ -11,4 +11,4 @@ install:
   - sudo apt-get install ansible
 
 script:
-  - cd ansible && /bin/bash ./start.sh
+  - cd .ansible && /bin/bash ./start.sh

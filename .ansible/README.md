@@ -35,3 +35,20 @@ rm -rf sf4project
 cd ./ansible-sf4project
 /bin/bash ./start.sh
 ```
+
+# Полный скрипт настройки сервера для разработки
+Данный скрипт также можно запускать при использовании Vagrand
+```sh
+#!/bin/bash
+
+sudo apt-get install software-properties-common
+sudo apt-add-repository ppa:ansible/ansible -y
+sudo apt-get update
+sudo apt-get install ansible git
+
+RND=$RANDOM
+git clone https://github.com/DevAndreas/sf4project sf4project-$RND
+mv sf4project-$RND/.ansible ./ansible-sf4project
+rm -rf sf4project-$RND
+cd ./ansible-sf4project && bash ./start.sh
+```

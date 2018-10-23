@@ -3,7 +3,7 @@
   apt:
     name:  "{{ item }}"
     state: present
-  with_items:
+  loop:
     - apache2
   tags: pkg-install
   become: true
@@ -12,10 +12,10 @@
   apt:
     name:  "{{ item }}"
     state: present
-  with_items:
-    - php5
-    - php5-curl
-    - php5-cli
-    - php5-mysql
+  loop:
+    - php7.0
+    - php7.0-curl
+    - php7.0-cli
+    - php7.0-mysql
   tags: pkg-install
   become: true

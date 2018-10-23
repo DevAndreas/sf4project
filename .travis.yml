@@ -1,6 +1,6 @@
 language: php
 os: linux
-dist: trusty
+dist: xenial
 
 install:
   - sudo apt-get install software-properties-common
@@ -9,4 +9,4 @@ install:
   - sudo apt-get install ansible
 
 script:
-  - ./start.sh
+  - ./ansible/start.sh

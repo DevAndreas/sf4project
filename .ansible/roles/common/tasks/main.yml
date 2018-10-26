@@ -1,15 +1,15 @@
 ---
-- name: update repositories cache
-  apt:
-    update_cache: yes
-  tags: pkg-install
-  become: true
-
 - name: install common software
   apt:
     name={{ item }}
     state=present
   loop:
     - git
+    - python-mysqldb
   tags: pkg-install
+  become: true
+
+- name: set Europe/Moscow time zone
+  timezone:
+    name: Europe/Moscow
   become: true

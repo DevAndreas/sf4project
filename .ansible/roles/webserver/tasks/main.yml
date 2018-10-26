@@ -23,3 +23,12 @@
     - libapache2-mod-php7.0
   tags: pkg-install
   become: true
+
+- name: enable apache modules
+  apache2_module:
+    name={{ item }}
+    state=present
+  loop:
+    - rewrite
+    - ssl
+  become: true

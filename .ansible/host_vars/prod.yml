@@ -1,0 +1,11 @@
+mysql_set_root_password: prod_password
+
+env: prod
+
+app_env: production
+app_vhosts:
+  - sf4project.com
+
+mysql_db_name: sf4project_prod
+mysql_set_user: sf4project_prod
+mysql_set_password: sf4project_prod

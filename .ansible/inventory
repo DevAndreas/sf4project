@@ -1,2 +1,4 @@
 [targets]
-localhost         ansible_connection=local
+dev		ansible_connection=local
+prod		ansible_connection=local
+stage		ansible_connection=local

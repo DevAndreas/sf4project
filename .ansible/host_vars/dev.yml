@@ -1,0 +1,9 @@
+env: dev
+
+app_env: development
+app_vhosts:
+  - dev.sf4project.com
+
+mysql_db_name: sf4project_dev
+mysql_set_user: sf4project_dev
+mysql_set_password: sf4project_dev

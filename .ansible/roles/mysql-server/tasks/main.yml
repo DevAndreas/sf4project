@@ -5,6 +5,69 @@
     state=present
   loop:
     - mysql-server
-    - mysql-client
   tags: pkg-install
+  become: true
+
+- name: set mysql password
+  mysql_user:
+    name=root
+    password={{ mysql_set_root_password }}
+    state=present
+  loop:
+     - localhost
+  become: true
+
+- name: create ~/.my.cnf
+  template:
+    dest=~/.my.cnf
+    src=.my.cnf
+
+- name: create /root/.my.cnf
+  template:
+    dest=/root/.my.cnf
+    src=.my.cnf
+  become: true
+
+- name: ensure anonymous user(s) are not in the database
+  mysql_user:
+    name=''
+    host={{ item }}
+    state=absent
+  loop:
+    - 127.0.0.1
+    - ::1
+    - localhost
+
+- name: create mysql databases
+  mysql_db:
+    name={{ item }}
+    encoding=utf8
+    collation=utf8_general_ci
+    state=present
+  loop:
+    - "{{ mysql_db_name }}"
+  notify:
+    - restart mysql
+
+- name: create mysql user
+  mysql_user:
+    name={{ mysql_set_user }}
+    password={{ mysql_set_password }}
+    host=%
+    priv=*.*:all
+    state=present
+  notify:
+    - restart mysql
+
+- name: remove the test database
+  mysql_db:
+    name=test
+    state=absent
+  notify:
+    - restart mysql
+
+- name: ensure mysql is started
+  service:
+    name=mysql
+    state=started
   become: true

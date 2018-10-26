@@ -1,0 +1,9 @@
+env: stage
+
+app_env: production
+app_vhosts:
+  - stage.sf4project.com
+
+mysql_db_name: sf4project_stage
+mysql_set_user: sf4project_stage
+mysql_set_password: sf4project_stage

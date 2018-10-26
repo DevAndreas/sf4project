@@ -8,6 +8,12 @@
   tags: pkg-install
   become: true
 
+- name: ensure mysql is started
+  service:
+    name=mysql
+    state=started
+  become: true
+
 - name: set mysql password
   mysql_user:
     name=root
@@ -65,9 +71,3 @@
     state=absent
   notify:
     - restart mysql
-
-- name: ensure mysql is started
-  service:
-    name=mysql
-    state=started
-  become: true

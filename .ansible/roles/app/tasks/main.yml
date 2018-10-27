@@ -1,0 +1,27 @@
+---
+- name: clone SF4Project git-repository
+  git:
+    repo: "{{ project_git_repository }}"
+    dest: "{{ project_root_dir }}"
+    update: no
+  become: true
+
+- name: ensure app directory is writable for user
+  file:
+    path="{{ project_root_dir }}"
+    owner={{ deploy_user }}
+    group={{ deploy_user }}
+    recurse=yes
+  become: true
+
+- name: add virtual host
+  template:
+    dest="/etc/apache2/sites-available/{{ app_vhost }}.conf"
+    src=sf4project.vhost
+  become: true
+
+- name: enable virtual host
+  command:
+    a2ensite {{ app_vhost }}
+    creates="/etc/apache2/sites-enabled/{{ app_vhost }}.conf"
+  become: true

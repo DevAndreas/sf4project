@@ -2,9 +2,10 @@ mysql_set_root_password: prod_password
 
 env: prod
 
+deploy_user: achernov
 app_env: production
-app_vhosts:
-  - sf4project.com
+project_root_dir: "{{ vhost_home_dir }}/sf4project/prod"
+app_vhost: sf4project.com
 
 mysql_db_name: sf4project_prod
 mysql_set_user: sf4project_prod

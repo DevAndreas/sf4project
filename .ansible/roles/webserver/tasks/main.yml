@@ -32,3 +32,12 @@
     - rewrite
     - ssl
   become: true
+
+- name: create filesystem for virtual hosts
+  file:
+    path="{{ item }}"
+    state=directory
+  loop:
+    - "{{ vhost_home_dir }}"
+    - "{{ vhost_logs_dir }}"
+  become: true

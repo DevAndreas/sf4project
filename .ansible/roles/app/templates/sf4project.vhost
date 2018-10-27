@@ -1,0 +1,23 @@
+<VirtualHost *:80>
+    ServerAdmin achernov@byterox.com
+    ServerName  {{ app_vhost }}
+
+    DocumentRoot {{ project_root_dir}}/web/
+
+    <Directory {{ project_root_dir }}/web>
+	AddType text/x-component .htc
+	RewriteEngine On
+
+	Options Indexes FollowSymLinks MultiViews
+	AllowOverride All
+	Require all granted
+    </Directory>
+
+    ErrorLog {{ vhost_logs_dir }}/{{ app_vhost }}_error.log
+
+    # Possible values include: debug, info, notice, warn, error, crit,
+    # alert, emerg.
+    LogLevel warn
+
+    CustomLog {{ vhost_logs_dir }}/{{ app_vhost }}_access.log combined
+</VirtualHost>

@@ -1,4 +1,8 @@
-[targets]
 dev		ansible_connection=local
 prod		ansible_connection=local
 stage		ansible_connection=local
+
+[sf4project]
+dev
+prod
+stage

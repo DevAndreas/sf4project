@@ -1,8 +1,9 @@
 env: dev
 
+deploy_user: achernov
 app_env: development
-app_vhosts:
-  - dev.sf4project.com
+project_root_dir: "{{ vhost_home_dir }}/sf4project/current"
+app_vhost: dev.sf4project.com
 
 mysql_db_name: sf4project_dev
 mysql_set_user: sf4project_dev

@@ -2,7 +2,7 @@
 - name: Add a deploy_user
   user:
     name: "{{ deploy_user }}"
-    group: "{{ deploy_user }}"
+  become: true
 
 - name: clone SF4Project git-repository
   git:
